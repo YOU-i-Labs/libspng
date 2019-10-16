@@ -12,6 +12,11 @@
     #include <zlib.h>
 #endif
 
+#if defined(__clang__) || defined(__GNUC__) || defined(__GNUG__)
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wincompatible-pointer-types-discards-qualifiers"
+#endif
+
 #define SPNG_READ_SIZE 8192
 
 #ifndef SPNG_DISABLE_OPT
@@ -3888,3 +3893,7 @@ static void defilter_paeth4(size_t rowbytes, unsigned char *row, const unsigned 
 }
 
 #endif /* SPNG_ARM */
+
+#if defined(__clang__) || defined(__GNUC__) || defined(__GNUG__)
+#pragma GCC diagnostic pop
+#endif
